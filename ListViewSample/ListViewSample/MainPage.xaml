@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:listview="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
+             xmlns:local="clr-namespace:ListViewSample"
+             x:Class="ListViewSample.MainPage">
+
+    <ContentPage.BindingContext>
+        <local:LoadMoreViewModel/>
+    </ContentPage.BindingContext>
+
+    <listview:SfListView x:Name="listView" ItemSize="100" ItemsSource="{Binding BookDetails}"
+                         LoadMoreCommand="{Binding LoadMoreItemsCommand}"
+                         LoadMoreOption="Auto"
+                         LoadMoreCommandParameter="{Binding Source={x:Reference listView}}"
+                         LoadMorePosition="End">
+        <listview:SfListView.LoadMoreTemplate>
+            <DataTemplate>
+                <Grid HeightRequest="30" WidthRequest="200" Background="Purple">
+                    <Label Text="Show more..." TextColor="LightCyan"
+                           FontSize="20" FontAttributes="Bold"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                </Grid>
+            </DataTemplate>
+        </listview:SfListView.LoadMoreTemplate>
+        <listview:SfListView.ItemTemplate>
+            <DataTemplate>
+                <Grid Padding="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.4*"/>
+                        <RowDefinition Height="0.9*"/>
+                    </Grid.RowDefinitions>
+                    <Label x:Name="name" Text="{Binding Name}" Grid.Row="0" FontSize="17" FontAttributes="Bold"/>
+                    <Label x:Name="description" Text="{Binding Description}" Grid.Row="1" FontSize="15" />
+                </Grid>
+            </DataTemplate>
+        </listview:SfListView.ItemTemplate>
+    </listview:SfListView>
+
+</ContentPage>
