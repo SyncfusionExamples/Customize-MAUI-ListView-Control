@@ -11,7 +11,7 @@
 
     <listview:SfListView x:Name="listView" ItemSize="100" ItemsSource="{Binding BookDetails}"
                          LoadMoreCommand="{Binding LoadMoreItemsCommand}"
-                         LoadMoreOption="Auto"
+                         LoadMoreOption="Manual"
                          LoadMoreCommandParameter="{Binding Source={x:Reference listView}}"
                          LoadMorePosition="End">
         <listview:SfListView.LoadMoreTemplate>
